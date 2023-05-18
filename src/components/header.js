@@ -50,9 +50,9 @@
   // for the tests to work!
   const headerAppender = (selector) => {
     const heading = Header('Bloomtech Times', 'May 17, 2023', '76 degrees');
-    const mySelector = document.querySelector(selector);
+    const mySelectorHeader = document.querySelector(selector);
     
-    mySelector.appendChild(heading);
+    mySelectorHeader.appendChild(heading);
     
 }
 
