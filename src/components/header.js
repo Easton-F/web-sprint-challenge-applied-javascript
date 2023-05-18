@@ -25,6 +25,7 @@
     header.appendChild(dateEl);
     header.appendChild(titleEl);
     header.appendChild(tempEl);
+  
 
     dateEl.textContent = date;
     titleEl.textContent = title;
@@ -48,7 +49,12 @@
   // so all that you need to do is pass it into the querySelector method
   // for the tests to work!
   const headerAppender = (selector) => {
-
+    const heading = Header('Bloomtech Times', 'May 17, 2023', '76 degrees');
+    const mySelector = document.querySelector(selector);
+    
+    mySelector.appendChild(heading);
+    
 }
+
 
 export { Header, headerAppender }
