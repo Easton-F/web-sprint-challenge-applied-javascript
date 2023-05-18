@@ -16,8 +16,8 @@
 
   const Tabs = (topics) => {
   
-    const section = document.createElement('div')
-    section.classList.add('topics');
+    const topicsSection = document.createElement('div')
+    topicsSection.classList.add('topics');
       
   for(let i = 0; i < topics.length; i++){
     let div = document.createElement('div');
@@ -25,10 +25,10 @@
           div.textContent = topics[i];
           div.classList.add('tab');
            
-          section.appendChild(div);
+          topicsSection.appendChild(div);
   }
     
-      return section;
+      return topicsSection;
   }
 
 
