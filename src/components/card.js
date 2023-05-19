@@ -39,8 +39,6 @@
             authorImg.src = article.authorPhoto;
             authorSpan.textContent = article.authorName;
 
-            console.log(article.headline);
-
             cardSection.appendChild(articleHeadline);
             cardSection.appendChild(authorSection);
             authorSection.appendChild(imgSection);
@@ -67,22 +65,37 @@
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-  const cardAppender = (selector) => {
+  const cardAppender = async (selector) => {
 
     const mySelectorCards = document.querySelector(selector);
+    let articleData = await  axios.get(`http://localhost:5001/api/articles`)
+    let atricleArrayData = articleData.data.articles;
 
-    axios.get(`http://localhost:5001/api/articles`)
-    .then( res => {
-        console.log(res.data);
-        const articleData = res.data.articles;
+    if(atricleArrayData.bootstrap === atricleArrayData.bootstrap){
+        console.log('IF', articleData.data.articles.bootstrap[0]);
+        articleData.data.articles.bootstrap.map( a => {
+            console.log('A', a);
+        })
+    }else if(atricleArrayData.javascript === atricleArrayData.javascript){
 
-        const allCards = Card(articleData);
-        mySelectorCards.append(allCards);
+    }
+
+
+    // axios.get(`http://localhost:5001/api/articles`)
+    // .then( res => {
+    //     // console.log('test data', res.data.articles);
+    //     console.log('article data', res.data.articles.bootstrap[0].authorName);
+    //      articleData = res.data.articles;
+         
+
+    //     // const allCards = Card(articleData);
+    //     // mySelectorCards.append(allCards);
      
-    })
-    .catch( err => {
-        console.log("Error:", err);
-    })
+    // })
+    // .catch( err => {
+    //     console.log("Error:", err);
+    // })
+    console.log('article data', articleData);
 }
 
 export { Card, cardAppender }
