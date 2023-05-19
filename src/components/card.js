@@ -21,7 +21,7 @@
 
       console.log(article);
 
-      for(let i = 0; i < article.obj.length; i++){
+      // for(let i = 0; i < article.obj.length; i++){
         const cardSection = document.createElement('div');
         cardSection.classList.add('card');
 
@@ -36,8 +36,10 @@
             imgSection.classList.add('img-container');
 
             articleHeadline.textContent = article.headline;
-            authorImg.textContent = article.authorPhoto;
+            authorImg.src = article.authorPhoto;
             authorSpan.textContent = article.authorName;
+
+            console.log(article.headline);
 
             cardSection.appendChild(articleHeadline);
             cardSection.appendChild(authorSection);
@@ -45,14 +47,16 @@
             authorSection.appendChild(authorSpan);
             imgSection.appendChild(authorImg);
 
+            console.log(cardSection);
+
             return cardSection;
     }
 
-    cardSection.addEventListener('click', article => {
-          console.log(article.headline);
-    } )
+    // cardSection.addEventListener('click', article => {
+    //       console.log(article.headline);
+    // } )
 
-}
+// }
 
 
   // TASK 6
