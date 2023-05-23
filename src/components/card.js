@@ -21,7 +21,6 @@
 
       console.log(article);
 
-      // for(let i = 0; i < article.obj.length; i++){
         const cardSection = document.createElement('div');
         cardSection.classList.add('card');
 
@@ -53,8 +52,8 @@
     // cardSection.addEventListener('click', article => {
     //       console.log(article.headline);
     // } )
+  
 
-// }
 
 
   // TASK 6
@@ -68,17 +67,49 @@
   const cardAppender = async (selector) => {
 
     const mySelectorCards = document.querySelector(selector);
-    let articleData = await  axios.get(`http://localhost:5001/api/articles`)
-    let atricleArrayData = articleData.data.articles;
+       await  axios.get(`http://localhost:5001/api/articles`)
+    .then(res => {
+      let articleArrayData = res.data.articles;
 
-    if(atricleArrayData.bootstrap === atricleArrayData.bootstrap){
-        console.log('IF', articleData.data.articles.bootstrap[0]);
-        articleData.data.articles.bootstrap.map( a => {
-            console.log('A', a);
-        })
-    }else if(atricleArrayData.javascript === atricleArrayData.javascript){
+      console.log(articleArrayData);
 
+      for(let articleKey in articleArrayData){
+
+        console.log('article Key', articleKey);
+
+        // for(let cardData in articleKey){
+        for(let cardDataKey in articleArrayData[articleKey]){
+          let newCard = Card(articleArrayData[articleKey][cardDataKey])
+  
+            mySelectorCards.appendChild(newCard);
+      }
     }
+   
+  })
+  .catch( err => {
+      console.log("Error:", err);
+  })
+  
+
+}
+export { Card, cardAppender }
+
+
+
+
+
+
+
+
+ // if(atricleArrayData.bootstrap === atricleArrayData.bootstrap){
+    //     console.log('IF', articleData.data.articles.bootstrap[0]);
+    //     articleData.data.articles.bootstrap.map( a => {
+    //         console.log('A', a);
+    //     })
+    // }else if(atricleArrayData.javascript === atricleArrayData.javascript){
+
+    // }
+
 
 
     // axios.get(`http://localhost:5001/api/articles`)
@@ -95,7 +126,3 @@
     // .catch( err => {
     //     console.log("Error:", err);
     // })
-    console.log('article data', articleData);
-}
-
-export { Card, cardAppender }
